@@ -3,7 +3,44 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">
+<div class="column is-4 is-offset-4">
+  <h3 class="title">
   Welcome, {{ name }}!
-</h1>
+  </h3>
+  <div class="box">
+      <form method="POST" action="/device">
+        <button class="button is-block is-info is-large is-fullwidth">New Device</button>
+      </form>
+  </div>
+</div>
+<body>
+
+    {% for id in ids %}
+        <h3>{{id}}</h3>
+        <div id="{{id}}"></div>
+    {% endfor %}
+
+</body>
+
+<footer>
+    <!-- D3.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <script type="text/javascript">
+
+        var graphs = {{graphJSON | safe}};
+        var ids = {{ids | safe}};
+
+        for(var i in graphs) {
+            Plotly.plot(ids[i], // the ID of the div, created above
+                        graphs[i].data,
+                        graphs[i].layout || {});
+        }
+
+    </script>
+</footer>
 {% endblock %}
