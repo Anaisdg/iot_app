@@ -5,11 +5,39 @@
 {% block content %}
 <div class="column is-4 is-offset-4">
   <h3 class="title">
-  Welcome, {{ name }}!
+  Welcome, {{ name , token }}!
   </h3>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type=text/javascript>
+        $(function() {
+          $('a#write_data').on('click', function(e) {
+            e.preventDefault()
+            $.getJSON('/write_data',
+                function(data) {
+              //do nothing
+            });
+            return false;
+          });
+        });
+</script>
+<script type=text/javascript>
+        $(function() {
+          $('a#quert_data').on('click', function(e) {
+            e.preventDefault()
+            $.getJSON('/query_data',
+                function(data) {
+              //do nothing
+            });
+            return false;
+          });
+        });
+</script>
   <div class="box">
-      <form method="POST" action="/device">
-        <button class="button is-block is-info is-large is-fullwidth">New Device</button>
+      <form method="POST">
+        <a href=# id=write_data><button class="button is-block is-info is-large is-fullwidth">Write Data</button></a>
+      </form>
+      <form method="GET">
+        <a href=# id=query_data><button class="button is-block is-info is-large is-fullwidth">Visualize Data</button></a>
       </form>
   </div>
 </div>

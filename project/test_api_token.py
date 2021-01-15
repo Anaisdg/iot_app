@@ -38,6 +38,6 @@ def read_token():
 
     authID = pretty_json["id"]
     token =  pretty_json["token"]
-    print("Your new token:\n ", token)
-    print(WHITE + BOLD + "Keep it secret! Keep it safe!" + END + END)
+    # print("Your new token:\n ", token)
+    # print(WHITE + BOLD + "Keep it secret! Keep it safe!" + END + END)
     return token

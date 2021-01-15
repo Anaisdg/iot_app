@@ -25,7 +25,7 @@ flask run
 ## Use the sqlite database: 
 
 Step One:
-Create the database
+Create the database if it doesn't already exist.
 ```
 python 
 from project import db, create_app
