@@ -6,14 +6,17 @@ from flask_login import current_user
 from flask_login import login_user, logout_user, login_required
 
 def query_data():
-    print(current_user)
-    my_token = current_user.token
-    # print(my_token)
+    # flask_token = "8aXPa1s0mNMDXexrRDbG5WKd6flwalEg-PnTHhsM-xcPWuEFApJqo1CMrwfjzWNVB_BMZqAHQvBlRKuFJpnhRg=="
+    # flask_orgid = "0437f6d51b579000"
+    # print(current_user)
+    # my_token = current_user.toke
+    my_token = "8aXPa1s0mNMDXexrRDbG5WKd6flwalEg-PnTHhsM-xcPWuEFApJqo1CMrwfjzWNVB_BMZqAHQvBlRKuFJpnhRg=="
+    print(my_token)
     my_org = "anais@influxdata.com"
     bucket = "my-bucket"
     query= '''
     from(bucket: "my-bucket")
-    |> range(start:-2d, stop: now())
+    |> range(start:-30d, stop: now())
     |> filter(fn: (r) => r._measurement == "three")
     |> filter(fn: (r) => r["_field"] == "value")
     |> limit(n:10)'''
