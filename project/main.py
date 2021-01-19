@@ -73,8 +73,8 @@ def profile():
     return render_template('profile.html', name=current_user.name, token=current_user.token, ids=ids, graphJSON=graphJSON)
 
 #background process happening without any refreshing
-@main.route('/write_data')
-def write_data():
+@main.route('/graph_write_data')
+def graph_write_data():
     my_token = "8aXPa1s0mNMDXexrRDbG5WKd6flwalEg-PnTHhsM-xcPWuEFApJqo1CMrwfjzWNVB_BMZqAHQvBlRKuFJpnhRg=="
     my_org = "anais@influxdata.com"
     bucket = "my-bucket"
@@ -92,8 +92,8 @@ def write_data():
     return ("nothing")
  
 #background process happening without any refreshing
-@main.route('/query_data')
-def query_data():
+@main.route('/graph_query_data')
+def graph_query_data():
     print(current_user)
     my_token = current_user.token
     # print(my_token)
@@ -112,5 +112,5 @@ def query_data():
     value = df["_value"].to_numpy()
     index = [datetime.to_pydatetime() for datetime in df["_time"]]
     ts = pd.Series(value, index=index)    
-    # print(ts)
+    print("graph_query", ts)
     return ts

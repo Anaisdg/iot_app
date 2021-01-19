@@ -12,7 +12,7 @@
         $(function() {
           $('a#write_data').on('click', function(e) {
             e.preventDefault()
-            $.getJSON('/write_data',
+            $.getJSON('/graph_write_data',
                 function(data) {
               //do nothing
             });
@@ -24,7 +24,7 @@
         $(function() {
           $('a#quert_data').on('click', function(e) {
             e.preventDefault()
-            $.getJSON('/query_data',
+            $.getJSON('/graph_query_data',
                 function(data) {
               //do nothing
             });

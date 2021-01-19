@@ -9,8 +9,8 @@ def query_data():
     # flask_token = "8aXPa1s0mNMDXexrRDbG5WKd6flwalEg-PnTHhsM-xcPWuEFApJqo1CMrwfjzWNVB_BMZqAHQvBlRKuFJpnhRg=="
     # flask_orgid = "0437f6d51b579000"
     # print(current_user)
-    # my_token = current_user.toke
-    my_token = "8aXPa1s0mNMDXexrRDbG5WKd6flwalEg-PnTHhsM-xcPWuEFApJqo1CMrwfjzWNVB_BMZqAHQvBlRKuFJpnhRg=="
+    my_token = current_user.token
+    # my_token = "8aXPa1s0mNMDXexrRDbG5WKd6flwalEg-PnTHhsM-xcPWuEFApJqo1CMrwfjzWNVB_BMZqAHQvBlRKuFJpnhRg=="
     print(my_token)
     my_org = "anais@influxdata.com"
     bucket = "my-bucket"
@@ -19,7 +19,7 @@ def query_data():
     |> range(start:-30d, stop: now())
     |> filter(fn: (r) => r._measurement == "three")
     |> filter(fn: (r) => r["_field"] == "value")
-    |> limit(n:10)'''
+    |> tail(n:10)'''
     # print(query)
     url = "https://us-west-2-1.aws.cloud2.influxdata.com/"
     client = InfluxDBClient(url=url, token=my_token, org=my_org, debug=False)
