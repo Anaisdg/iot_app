@@ -8,7 +8,7 @@ import json
 import pandas as pd
 import plotly
 import numpy as np
-from .write_query_data import query_data
+from .write_query_data import query_data as qd
 
 
 main = Blueprint('main', __name__)
@@ -22,7 +22,7 @@ def index():
 def profile():
     # rng = pd.date_range('1/1/2011', periods=7500, freq='H')
     # ts = pd.Series(np.random.randn(len(rng)), index=rng)
-    ts = query_data()
+    ts = qd()
 
     graphs = [
         # dict(
