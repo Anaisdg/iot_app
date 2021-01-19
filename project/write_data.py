@@ -10,7 +10,7 @@ my_org = "anais@influxdata.com"
 bucket = "my-bucket"
 query= '''
 from(bucket: "my-bucket")
-|> range(start:-2d, stop: now())
+|> range(start:-30d, stop: now())
 |> filter(fn: (r) => r._measurement == "three")
 |> filter(fn: (r) => r["_field"] == "value")
 |> limit(n:10)'''

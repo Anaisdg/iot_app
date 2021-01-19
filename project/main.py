@@ -1,17 +1,15 @@
 # main.py
-
+from datetime import datetime
 from flask import Blueprint, render_template
 from flask_login import login_required, current_user
-import pandas as pd
-import numpy as np
-import json
-import plotly
-from .write_query_data import query_data
-import pandas as pd
-from datetime import datetime
-from influxdb_client import InfluxDBClient
-import numpy as np
 from flask_login import current_user
+from influxdb_client import InfluxDBClient
+import json
+import pandas as pd
+import plotly
+import numpy as np
+from .write_query_data import query_data
+
 
 main = Blueprint('main', __name__)
 
@@ -103,7 +101,7 @@ def query_data():
     bucket = "my-bucket"
     query= '''
     from(bucket: "my-bucket")
-    |> range(start:-2d, stop: now())
+    |> range(start:-30d, stop: now())
     |> filter(fn: (r) => r._measurement == "three")
     |> filter(fn: (r) => r["_field"] == "value")
     |> tail(n:10)'''
