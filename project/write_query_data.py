@@ -6,7 +6,9 @@ from flask_login import current_user
 from flask_login import login_user, logout_user, login_required
 
 def query_data():
-    my_token = current_user.token
+    my_token = current_user.read_token
+    # my_token = "8aXPa1s0mNMDXexrRDbG5WKd6flwalEg-PnTHhsM-xcPWuEFApJqo1CMrwfjzWNVB_BMZqAHQvBlRKuFJpnhRg=="
+    # my_user = "three"
     my_user = current_user.name
     my_org = "anais@influxdata.com"
     bucket = "my-bucket"
@@ -22,10 +24,12 @@ def query_data():
     value = df["_value"].to_numpy()
     index = [datetime.to_pydatetime() for datetime in df["_time"]]
     ts = pd.Series(value, index=index)    
-    return ts
+    return print(ts)
 
 def write_data():
-    my_token = "8aXPa1s0mNMDXexrRDbG5WKd6flwalEg-PnTHhsM-xcPWuEFApJqo1CMrwfjzWNVB_BMZqAHQvBlRKuFJpnhRg=="
+    my_token = current_user.write_token
+    my_user = current_user.name
+    # my_token = "8aXPa1s0mNMDXexrRDbG5WKd6flwalEg-PnTHhsM-xcPWuEFApJqo1CMrwfjzWNVB_BMZqAHQvBlRKuFJpnhRg=="
     my_org = "anais@influxdata.com"
     bucket = "my-bucket"
     url = "https://us-west-2-1.aws.cloud2.influxdata.com/"
@@ -37,7 +41,7 @@ def write_data():
     dti = pd.date_range(now, periods=5, freq="min")
     df = df.set_index(dti)
     print(df)
-    write_api.write(bucket, record=df, data_frame_measurement_name=current_user.name)
+    write_api.write(bucket, record=df, data_frame_measurement_name=my_user)
     return print("points written")
  
 if __name__ == "__main__":

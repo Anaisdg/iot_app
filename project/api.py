@@ -37,7 +37,34 @@ def read_token():
     print(json.dumps(pretty_json, indent=2))
 
     authID = pretty_json["id"]
-    token =  pretty_json["token"]
-    print("Your new token:\n ", token)
+    read_token =  pretty_json["token"]
+    print("Your new read token:\n ", read_token)
     print(WHITE + BOLD + "Keep it secret! Keep it safe!" + END + END)
-    return token
+    return read_token
+
+def write_token():
+    headers = {"Authorization": "Token " + flask_token}
+    namehex = secrets.token_hex(3)
+    payload = {
+        "orgID": flask_orgid,
+        "description": "flask read/write token-" + namehex,
+        "permissions": [
+            {
+                "action": "write",
+                "resource": {
+                    "type": "buckets",
+                    "orgID": flask_orgid,
+                },
+            },
+        ],
+    }
+
+    r = requests.post(url, headers=headers, json=payload)
+    pretty_json = json.loads(r.text)
+    print(json.dumps(pretty_json, indent=2))
+
+    authID = pretty_json["id"]
+    write_token =  pretty_json["token"]
+    print("Your new read token:\n ", read_token)
+    print(WHITE + BOLD + "Keep it secret! Keep it safe!" + END + END)
+    return write_token

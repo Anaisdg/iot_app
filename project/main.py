@@ -20,7 +20,12 @@ def index():
 @main.route('/profile')
 @login_required
 def profile():
-    ts = query_data()   
+    ts = query_data()  
+    # to initialize data for visualization before user has written points
+    if ts == None : 
+        rng = pd.date_range('1/1/2011', periods=10, freq='H')
+        ts = pd.Series(np.random.randn(len(rng)), index=rng)
+        
     graphs = [
         dict(
             data=[
@@ -41,7 +46,7 @@ def profile():
     # objects to their JSON equivalents
     graphJSON = json.dumps(graphs, cls=plotly.utils.PlotlyJSONEncoder)
     print(current_user)
-    return render_template('profile.html', name=current_user.name, token=current_user.token, ids=ids, graphJSON=graphJSON)
+    return render_template('profile.html', name=current_user.name, read_token=current_user.read_token, write_token=current_user.write_token, ids=ids, graphJSON=graphJSON)
 
 #background process happening without any refreshing
 @main.route('/graph_write_data')
