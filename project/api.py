@@ -34,12 +34,12 @@ def read_token():
 
     r = requests.post(url, headers=headers, json=payload)
     pretty_json = json.loads(r.text)
-    print(json.dumps(pretty_json, indent=2))
+    # print(json.dumps(pretty_json, indent=2))
 
     authID = pretty_json["id"]
     read_token =  pretty_json["token"]
-    print("Your new read token:\n ", read_token)
-    print(WHITE + BOLD + "Keep it secret! Keep it safe!" + END + END)
+    # print("Your new read token:\n ", read_token)
+    # print(WHITE + BOLD + "Keep it secret! Keep it safe!" + END + END)
     return read_token
 
 def write_token():
@@ -61,10 +61,10 @@ def write_token():
 
     r = requests.post(url, headers=headers, json=payload)
     pretty_json = json.loads(r.text)
-    print(json.dumps(pretty_json, indent=2))
+    # print(json.dumps(pretty_json, indent=2))
 
     authID = pretty_json["id"]
     write_token =  pretty_json["token"]
-    print("Your new read token:\n ", read_token)
-    print(WHITE + BOLD + "Keep it secret! Keep it safe!" + END + END)
+    # print("Your new read token:\n ", read_token)
+    # print(WHITE + BOLD + "Keep it secret! Keep it safe!" + END + END)
     return write_token

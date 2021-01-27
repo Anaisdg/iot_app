@@ -7,8 +7,6 @@ from flask_login import login_user, logout_user, login_required
 
 def query_data():
     my_token = current_user.read_token
-    # my_token = "8aXPa1s0mNMDXexrRDbG5WKd6flwalEg-PnTHhsM-xcPWuEFApJqo1CMrwfjzWNVB_BMZqAHQvBlRKuFJpnhRg=="
-    # my_user = "three"
     my_user = current_user.name
     my_org = "anais@influxdata.com"
     bucket = "my-bucket"
@@ -29,7 +27,6 @@ def query_data():
 def write_data():
     my_token = current_user.write_token
     my_user = current_user.name
-    # my_token = "8aXPa1s0mNMDXexrRDbG5WKd6flwalEg-PnTHhsM-xcPWuEFApJqo1CMrwfjzWNVB_BMZqAHQvBlRKuFJpnhRg=="
     my_org = "anais@influxdata.com"
     bucket = "my-bucket"
     url = "https://us-west-2-1.aws.cloud2.influxdata.com/"
