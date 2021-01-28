@@ -7,8 +7,8 @@ BOLD = '\u001b[1m'
 WHITE  = '\33[37m'
 END = '\033[0m'
 
-flask_token = "8aXPa1s0mNMDXexrRDbG5WKd6flwalEg-PnTHhsM-xcPWuEFApJqo1CMrwfjzWNVB_BMZqAHQvBlRKuFJpnhRg=="
-flask_orgid = "0437f6d51b579000"
+flask_token = os.environ['INFLUX_FLASK_TOKEN'])
+flask_orgid = os.environ['INFLUX_FLAS_ORGID'])
 print(flask_token)
 proto="http://"
 domain="us-west-2-1.aws.cloud2.influxdata.com"
