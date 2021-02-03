@@ -10,6 +10,19 @@ $ virtualenv --python python3 env
 $ source env/bin/activate
 $ pip install -r requirements.txt
 ```
+## Export env variables
+Make sure your token is an all access token. 
+```
+export INFLUX_FLASK_TOKEN = <my-token>
+export INFLUX_FLASK_ORGID = <my-org-id>
+```
+
+## Create the sqlite database
+```
+python 
+from project import db, create_app
+db.create_all(app=create_app())
+```
 
 ## Run the App
 
