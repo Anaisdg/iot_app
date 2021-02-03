@@ -19,9 +19,13 @@ def query_data():
     url = "https://us-west-2-1.aws.cloud2.influxdata.com/"
     client = InfluxDBClient(url=url, token=my_token, org=my_org, debug=False)
     df = client.query_api().query_data_frame(org=my_org, query=query)
-    value = df["_value"].to_numpy()
-    index = [datetime.to_pydatetime() for datetime in df["_time"]]
-    ts = pd.Series(value, index=index)    
+    if df.empty: 
+        rng = pd.date_range('1/1/2011', periods=10, freq='H')
+        ts = pd.Series(np.random.randn(len(rng)), index=rng)
+    else: 
+        value = df["_value"].to_numpy()
+        index = [datetime.to_pydatetime() for datetime in df["_time"]]
+        ts = pd.Series(value, index=index)    
     return print(ts)
 
 def write_data():
