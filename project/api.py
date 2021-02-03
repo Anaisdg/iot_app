@@ -9,8 +9,8 @@ BOLD = '\u001b[1m'
 WHITE  = '\33[37m'
 END = '\033[0m'
 
-flask_token = os.environ['INFLUX_FLASK_TOKEN'])
-flask_orgid = os.environ['INFLUX_FLAS_ORGID'])
+flask_token = os.environ['INFLUX_FLASK_TOKEN']
+flask_orgid = os.environ['INFLUX_FLAS_ORGID']
 proto="http://"
 domain="us-west-2-1.aws.cloud2.influxdata.com"
 api_path="/api/v2/authorizations/"

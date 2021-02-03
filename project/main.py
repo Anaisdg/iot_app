@@ -25,7 +25,7 @@ def profile():
     if ts == None : 
         rng = pd.date_range('1/1/2011', periods=10, freq='H')
         ts = pd.Series(np.random.randn(len(rng)), index=rng)
-        
+    # a list so developer can easily expand it for multiple visualizations     
     graphs = [
         dict(
             data=[
