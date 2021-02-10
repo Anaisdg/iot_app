@@ -32,7 +32,7 @@ def query_data():
 def write_data():
     my_token = current_user.write_token
     my_user = current_user.name
-    my_org = "anais@influxdata.com"
+    my_org = os.environ['INFLUX_FLASK_ORGID']
     bucket = "my-bucket"
     url = "https://us-west-2-1.aws.cloud2.influxdata.com/"
     client = InfluxDBClient(url=url, token=my_token, org=my_org, debug=False)
