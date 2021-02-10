@@ -10,13 +10,12 @@ def query_data():
     my_token = current_user.read_token
     my_user = current_user.name
     my_org = os.environ['INFLUX_FLASK_ORGID']
-    bucket = "my-bucket"
     query= '''
-    from(bucket: "my-bucket")
+    from(bucket: "{}")
     |> range(start:-30d, stop: now())
-    |> filter(fn: (r) => r._measurement == "''' + my_user + '''")
+    |> filter(fn: (r) => r._measurement == "{}")
     |> filter(fn: (r) => r["_field"] == "value")
-    |> tail(n:10)'''
+    |> tail(n:10)'''.format(os.environ["INFLUX_BUCKET"], my_user)
     url = "https://us-west-2-1.aws.cloud2.influxdata.com/"
     client = InfluxDBClient(url=url, token=my_token, org=my_org, debug=False)
     df = client.query_api().query_data_frame(org=my_org, query=query)
@@ -33,7 +32,7 @@ def write_data():
     my_token = current_user.write_token
     my_user = current_user.name
     my_org = os.environ['INFLUX_FLASK_ORGID']
-    bucket = "my-bucket"
+    bucket = os.environ['INFLUX_BUCKET']
     url = "https://us-west-2-1.aws.cloud2.influxdata.com/"
     client = InfluxDBClient(url=url, token=my_token, org=my_org, debug=False)
     write_api = client.write_api()
