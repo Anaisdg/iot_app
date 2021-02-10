@@ -13,8 +13,8 @@ $ pip install -r requirements.txt
 ## Export env variables
 Make sure your token is an all access token. 
 ```
-export INFLUX_FLASK_TOKEN = <my-token>
-export INFLUX_FLASK_ORGID = <my-org-id>
+export INFLUX_FLASK_TOKEN=<my-token>
+export INFLUX_FLASK_ORGID=<my-org-id>
 ```
 
 ## Create the sqlite database
