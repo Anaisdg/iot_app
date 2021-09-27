@@ -1,7 +1,6 @@
 A simple Flask demonstrating the InfluxDB API for IoT apps.
 
 ## Setup
-
 To install dependencies:
 
 ```
@@ -15,6 +14,7 @@ Make sure your token is an all access token.
 ```
 export INFLUX_FLASK_TOKEN=<my-token>
 export INFLUX_FLASK_ORGID=<my-org-id>
+export INFLUX_BUCKET=<my-bucket>
 ```
 
 ## Create the sqlite database
